@@ -1,8 +1,6 @@
 #ifndef _LIST_H
 #define _LIST_H
 
-#define NAME_LEN 256
-#define STR_LEN 1024
 #define COMMAND_INS book bk
 
 #include <stdio.h>
@@ -12,6 +10,7 @@
 #include <pthread.h>
 #include <mqueue.h>
 #include <pthread.h>
+#include <time.h>
 
 struct book 
 {

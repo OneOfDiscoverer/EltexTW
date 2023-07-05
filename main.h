@@ -7,5 +7,17 @@
 #include <semaphore.h>
 #include <signal.h>
 #include <unistd.h>
+#include <time.h>
+
+#define NUMOFTHREAD 50
+
+struct thrd{
+    pthread_t thread;
+    int cnt;
+    sem_t* lk;
+};
+
+char flag;
+
 
 #endif
