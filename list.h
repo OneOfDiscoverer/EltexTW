@@ -7,10 +7,6 @@
 #include <stdlib.h>
 #include <malloc.h>
 #include <string.h>
-#include <pthread.h>
-#include <mqueue.h>
-#include <pthread.h>
-#include <time.h>
 
 struct book 
 {
