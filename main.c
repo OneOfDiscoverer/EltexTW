@@ -35,7 +35,7 @@ void* receiver(struct thrd* th){
         }
         //выполнение задачи
         if(tmp){
-            th->cnt = th->cnt + 1;
+            th->cnt++;
             printf("%lu: %s\n",th->thread, str);
         }
     }

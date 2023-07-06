@@ -17,7 +17,7 @@ struct thrd{
     sem_t* lk;
 };
 
-char flag;
+volatile char flag;
 
 
 #endif
