@@ -8,9 +8,11 @@
 #include <malloc.h>
 #include <string.h>
 
+#define STR_SIZE        1024
+
 struct book 
 {
-    char str[1024];
+    char str[STR_SIZE];
 }typedef book;
 
 struct list

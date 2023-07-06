@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <time.h>
 
-#define NUMOFTHREAD 50
+#define NUMOFTHREAD     100
 
 struct thrd{
     pthread_t thread;
