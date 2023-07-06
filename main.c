@@ -26,8 +26,6 @@ void* receiver(struct thrd* th){
             exit(EXIT_FAILURE);
         }
         if(tmp = getAt(0)) {
-            if (!tmp)
-                break;
             strcpy(str, tmp->bk.str);
             remove_at(0);
         }
