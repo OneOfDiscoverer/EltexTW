@@ -9,8 +9,9 @@ int main(int argc, char* argv[]){
         pushBack(&bk);
         assert(!strcmp(getAt(i)->bk.str, "test"));
     }
-    for(; 0 < i; i--){
+    while(i--){
         assert(remove_at(i) == 1);
     }
-    assert(remove_at(0) == 0);   
+    assert(remove_at(i) == 0);   
+    return 0;
 }
