@@ -23,7 +23,7 @@ void* receiver(struct thrd* th){
         //ожидание задачи
         if(sem_wait(th->lk) < 0){
             perror("sem_wait");
-            exit(EXIT_FAILURE);
+            exit(EXIT_FAILURE); //рубим с плеча
         }
         if(tmp = getAt(0)) {
             strcpy(str, tmp->bk.str);
@@ -31,7 +31,7 @@ void* receiver(struct thrd* th){
         }
         if(sem_post(th->lk) < 0){
             perror("sem_post");
-            exit(EXIT_FAILURE);
+            exit(EXIT_FAILURE); //в общем то тоже рубим с плеча
         }
         //выполнение задачи
         if(tmp){
