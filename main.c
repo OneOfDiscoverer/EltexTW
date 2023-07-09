@@ -7,9 +7,11 @@ void usr_handler(int sigset){
 void* sender(void* argc){
     srandom(time(NULL));
     while(1){
-        usleep(random() & 0xFFFF);
+        usleep(random() & RND_TIME_MASK);
         book bk = {0};
-        for(int i = 0; i < (random() & 0xFF); i++){
+        for(int i = 0; i < (random() & RND_LEN_MASK); i++){
+            if(i == STR_SIZE)
+                break;
             bk.str[i] = 0x7F & (random() + 0x20);
         }
         pushBack(&bk);
@@ -62,10 +64,11 @@ int main(int argc, char* argv[]){
         exit(EXIT_FAILURE);
     }
     
-    struct thrd trd[NUMOFTHREAD] = {0};
+    struct thrd *trd = calloc(sizeof(struct thrd), atoi(argv[1]));
+
     pthread_t sndr;
     pthread_create(&sndr, NULL, sender, NULL);
-    for(int i = 0; i < NUMOFTHREAD; i++){
+    for(int i = 0; i < atoi(argv[1]); i++){
         trd[i].lk = &lock;
         pthread_create(&trd[i].thread, NULL, receiver, &trd[i]);
     }
@@ -75,7 +78,7 @@ int main(int argc, char* argv[]){
             int i;
             for(i = 0; getAt(i); i++);
             printf("queue len: %d \n", i);
-            for(int i = 0; i < NUMOFTHREAD; i++){
+            for(int i = 0; i < atoi(argv[1]); i++){
                 printf("thrd [%lu] has [%d] num\n", trd[i].thread, trd[i].cnt);
             }
             flag = 0;

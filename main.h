@@ -9,7 +9,8 @@
 #include <unistd.h>
 #include <time.h>
 
-#define NUMOFTHREAD     100
+#define RND_TIME_MASK   0xFFFF
+#define RND_LEN_MASK    0xFF
 
 struct thrd{
     pthread_t thread;
@@ -18,6 +19,5 @@ struct thrd{
 };
 
 volatile char flag;
-
 
 #endif
