@@ -26,7 +26,7 @@ void list_c(void** state){
         assert_true(remove_at(i));
     }
     assert_false(remove_at(i));   
-    assert_ptr_equal(head, getAt(0));
+    assert_ptr_equal(getHead(), getAt(0));
 }
 
 int main(int argc, char* argv[]){
