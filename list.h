@@ -23,6 +23,10 @@ struct list
 
 static list* head = 0;
 
+#ifdef _TEST_LIST
+list* getHead(void);
+#endif
+
 list* getAt(int id);
 void pushBack(void *ptr);
 int remove_at(int num);

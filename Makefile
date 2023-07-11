@@ -19,8 +19,7 @@ $(BIN): $(HEADERS)
 
 test:	
 		rm -rf test
-		$(CC) test.c list.c -o test
-
+		$(CC) test.c list.c -o test -lcmocka
 .PHONY: test
 
 clean:

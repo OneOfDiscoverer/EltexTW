@@ -1,5 +1,9 @@
 #include "list.h"
 
+list* getHead(void){ //test geter
+    return head;
+}
+
 list* getAt(int id){
     list* tmp = head;
     if(!tmp)
