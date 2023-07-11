@@ -28,18 +28,6 @@ void* receiver(struct thrd* th){
     list* tmp;
     char str[STR_SIZE];
 
-    struct sigaction new_action;
-    new_action.sa_handler = trd_handler;
-    new_action.sa_flags = 0;
-    if(sigemptyset(&new_action.sa_mask)){
-        perror("sigemptyset");
-        exit(EXIT_FAILURE);
-    }
-    if(sigaction(SIGUSR2, &new_action ,NULL) < 0){
-        perror("sigaction");
-        exit(EXIT_FAILURE);
-    }
-
     while(1){ 
         th->is_sleep = 0;
         th->is_sleep = sleep(__INT_MAX__);  //спим до сигнала. Можно "спать" на следующей строке.
@@ -61,14 +49,26 @@ void* receiver(struct thrd* th){
 
 
 int main(int argc, char* argv[]){
-    struct sigaction new_action;
-    new_action.sa_handler = usr_handler;
-    new_action.sa_flags = 0;
-    if(sigemptyset(&new_action.sa_mask)){
+    struct sigaction usr1;
+    usr1.sa_handler = usr_handler;
+    usr1.sa_flags = 0;
+    if(sigemptyset(&usr1.sa_mask)){
         perror("sigemptyset");
         exit(EXIT_FAILURE);
     }
-    if(sigaction(SIGUSR1, &new_action ,NULL) < 0){
+    if(sigaction(SIGUSR1, &usr1 ,NULL) < 0){
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+
+    struct sigaction usr2;
+    usr2.sa_handler = trd_handler;
+    usr2.sa_flags = 0;
+    if(sigemptyset(&usr2.sa_mask)){
+        perror("sigemptyset");
+        exit(EXIT_FAILURE);
+    }
+    if(sigaction(SIGUSR2, &usr2 ,NULL) < 0){
         perror("sigaction");
         exit(EXIT_FAILURE);
     }
