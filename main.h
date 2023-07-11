@@ -13,11 +13,18 @@
 #define RND_LEN_MASK    0xFF
 
 struct thrd{
-    pthread_t thread;
-    int cnt;
-    sem_t* lk;
+    pthread_t thread;   //ид процесса
+    int cnt;            //счетчик сообщений
+    sem_t* lk;          //указатель на семафор
+    char is_sleep;      //флаг состояния сна
 };
 
 volatile char flag;
+volatile int num_of_threads = 2;
+
+void* sender(sem_t *lock);
+void* receiver(struct thrd* th);
+void trd_handler(int sigset);
+void usr_handler(int sigset);
 
 #endif
