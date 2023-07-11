@@ -42,7 +42,7 @@ void* receiver(struct thrd* th){
 
     while(1){ 
         th->is_sleep = 0;
-        //th->is_sleep = sleep(__INT_MAX__);  //спим до сигнала. Можно "спать" на следующей строке.
+        th->is_sleep = sleep(__INT_MAX__);  //спим до сигнала. Можно "спать" на следующей строке.
         sem_wait(th->lk);                   //атомарно забираем экземпляр задачи
         if(tmp = getAt(0)){
             strcpy(str, tmp->bk.str);
